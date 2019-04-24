@@ -21,6 +21,7 @@ class UserQuestion(models.Model):
     user = models.ForeignKey(User, related_name='user_questions', on_delete=models.CASCADE)
     question = models.ForeignKey(Question, related_name='memberships', on_delete=models.CASCADE)
     reponse = models.CharField(max_length=255)
+    point_obtenu = models.FloatField() 
 
     def __str__(self):
         return self.user.username

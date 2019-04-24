@@ -13,11 +13,13 @@ from . import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 
+from .verify_result import calcul_result
+
 User = get_user_model()
 
 # Create your views here.
 
-#@login_required
+@login_required(login_url='/account/login/')
 def index(request):
     # When user validate a question
     if request.method == 'POST':
@@ -33,8 +35,9 @@ def index(request):
             else:
                 response_data = ','.join(user_response['response'])
         # Save user input in the database
+        total_marks = calcul_result(user_response['response'], questionId)
         question = models.Question.objects.get(pk=questionId)
-        data = models.UserQuestion(user=request.user, question=question, reponse=response_data)
+        data = models.UserQuestion(user=request.user, question=question, reponse=response_data, point_obtenu=total_marks)
         data.save()
         #return JsonResponse(status = 401 , data = {'success' : '/quiz/' })
         return HttpResponse(status=201)
@@ -75,8 +78,6 @@ def index(request):
         #print(str(questions.query))
     return render(request, 'quiz/quiz.html', context = ctx)
 
-
-#class CreateResponse(generic.CreateView)
 
 """ class QuestionList(SelectRelatedMixin, generic.ListView):
     model = models.Response

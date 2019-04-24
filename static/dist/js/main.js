@@ -25,10 +25,7 @@ sendResponse = () => {
         }
     })
     .then(function(response) {
-        console.log(response);
-        setTimeout(() => {
-            window.location.href = '/'; 
-        }, 2000)
+        window.location.href = '/'; 
     })
     .catch(function(error) {
         clearLoader();
