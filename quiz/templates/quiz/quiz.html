@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container">
+    <h2>{{question.libelle}}</h2>
+    <form method="POST" id="responseForm">
+        {% csrf_token %}
+        {% for response in responses %}
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="rep" value="{{response.libelle}}" id="defaultCheck{{response.id}}">
+                <label class="form-check-label" for="defaultCheck{{response.id}}">
+                    {{response.libelle}}
+                </label>
+            </div>
+            <input type="hidden" id="questionId" value="{{question.id}}" />
+        {% endfor %}
+        <button type="submit" id="submit" class="btn btn-primary">Valider</button>
+    </form>
+
+    <div class="col-md-8">
+
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+    </form>
+</div>
+{% endblock %} 
