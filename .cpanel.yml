@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/inchtech/realTimeQuizApp/
+    - /bin/cp -R $DEPLOYPATH
