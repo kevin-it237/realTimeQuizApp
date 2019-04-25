@@ -30,7 +30,7 @@ SECRET_KEY = 'rz=#9j8j+3d=vykfib-&g(qm0i(q0^rwq+s$og0iap=1gn$cjq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["quiz.inchtechs.com", "www.quiz.inchtechs.com", "challenge.inchtechs.com", "www.challenge.inchtechs.com", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -81,13 +81,13 @@ WSGI_APPLICATION = 'opentechquiz.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-""" DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
- """
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -96,6 +96,7 @@ DATABASES = {
         'PASSWORD': '',
     }
 }
+"""
 
 
 # Password validation
