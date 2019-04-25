@@ -17,6 +17,8 @@ from .verify_result import calcul_result
 
 User = get_user_model()
 
+N = 5
+
 # Create your views here.
 
 @login_required(login_url='/account/login/')
@@ -59,7 +61,7 @@ def index(request):
         print(already_anwsered_ids)
 
         # Find if he have not anwserd all his questions
-        if (num_already_anwsered < 20 ):
+        if (num_already_anwsered < N ):
             # Find a random question
             random_question_id = randint(1, NUM_QUESTIONS)
             # If the question is allready answered
@@ -72,6 +74,13 @@ def index(request):
             question = models.Question.objects.get(pk=random_question_id)
             # Get correspondant responses
             responses = models.Response.objects.filter(question__pk=random_question_id)
+        elif (num_already_anwsered == N ): # Il a terminé le jeux
+            # Calculer son score
+            """ models.UserQuestion.objects.filter(attribute__in=attributes) \
+            .values('location') \
+            .annotate(score = Sum('score')) \
+            .order_by('-score') """
+            return render(request, 'quiz/thankyou.html')
 
         # Display
         ctx = {'question': question, 'responses': responses}

@@ -11,7 +11,7 @@ class Question(models.Model):
     users = models.ManyToManyField(User, through='UserQuestion')
 
     def __str__(self):
-        return self.name
+        return self.libelle
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -35,4 +35,4 @@ class Response(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.user.libelle
+        return self.libelle

@@ -1,0 +1,30 @@
+{
+  "name": "opentechquiz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch:sass": "node-sass --watch static/dist/sass/main.scss static/dist/css/master.css",
+    "devserver": "live-server",
+    "start": "npm-run-all --parallel devserver watch:sass",
+    "compile:sass": "node-sass static/dist/sass/main.scss static/dist/css/master.comp.css",
+    "prefix:css": "npx postcss static/dist/master.comp.css --use autoprefixer -o static/dist/css/master.prefix.css",
+    "compress:css": "node-sass static/dist/css/master.prefix.css static/dist/css/master.css --output-master compressed",
+    "build:css": "npm-run-all compile:sass prefix:css compress:css"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.4",
+    "concat": "^1.0.3",
+    "node-sass": "^4.11.0",
+    "npm-run-all": "^4.1.1",
+    "postcss-cli": "^4.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevin-it237/realTimeQuizApp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kevin-it237/realTimeQuizApp/issues"
+  },
+  "homepage": "https://github.com/kevin-it237/realTimeQuizApp#readme"
+}

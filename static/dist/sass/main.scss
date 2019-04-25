@@ -1,0 +1,229 @@
+html, body {
+    font-size: 10px;
+    font-family: 'Montserrat', Helvetica, sans-serif;
+    box-sizing: border-box; 
+}
+
+*,*::after, *::before{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;   
+}
+
+$mainColor1: #ED1C24;
+$mainColor2: #FBB03B;
+$white: #FFF;
+$graylight: #F6F6F6;  
+$graydark: #222222;  
+
+body {
+    background-color: #fefefe;        
+}  
+
+/* Header */
+header {
+    background-color: $graydark;   
+    nav {
+        display: flex;  
+        flex-direction: row;
+        align-items: center;
+        height: 8rem;
+        padding: 3rem 1rem;       
+
+        .logo__box {
+            margin-right: auto; 
+            .logo {
+                width: 7rem;
+            }
+        }
+
+        .sign__box {
+            .navbar__items {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+
+                .nav-item {
+                    a {
+                        font-size: 1.6rem;
+                        color: $white;
+                        transition: 2ms;
+
+                        &:hover {
+                            color: $mainColor2;
+                            transform: scale(1.06)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Banner */
+.banner {
+    display: flex;
+    flex-direction: column;          
+    align-items: center;
+    justify-content: center;
+    height: 30rem;
+    background-image: linear-gradient(to right,rgba($graydark, 0.9), rgba($mainColor1, 0.95), rgba($mainColor2, 0.9) 98%),    
+    url("/static/imgs/action-blur-electronics-247932.jpg");                         
+    background-position: center;    
+    background-repeat: no-repeat; 
+    background-size: cover;      
+
+    h1 {     
+        font-size: 4.2rem;
+        font-weight: bold;
+        color: $white;        
+    }
+    img {
+        margin-top: 2rem; 
+        width: 9rem;                    
+    }
+}
+
+/* Sign up Form */
+.form__container {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+
+    h2 {     
+        font-size: 3.5rem;
+        font-weight: bold;
+        text-align: center;  
+    }
+
+    form {
+        width: 80%;
+        margin-top: 4rem;
+        padding: 5rem ;
+        background-color: $white;            
+        box-shadow: 0px 5px 10px rgba($graydark, 0.2);  
+
+        @media only screen and (max-width: 900px) {
+            width: 100%;
+        }
+     
+        .form-group {             
+            margin-top: 2.5rem;    
+
+            label { 
+                font-size: 1.6rem;   
+            }
+            small, small > * {   
+                font-size: 1.3rem;   
+            }
+            small { 
+                ul {
+                    margin-left: 1.8rem;  
+                }
+            }
+        }
+        .alert, .alert > * {
+            font-size: 1.45rem;      
+        }
+    } 
+}
+
+/* Footer */
+footer {
+    margin-top: 10rem;
+    padding: 4rem;
+    background-color: $graydark;
+
+    p {  
+        text-align: center;
+        font-size: 1.5rem;
+        color: white;
+    }
+}
+
+/* Inputs and button style */
+.btn {
+    margin-top: 2rem;     
+    outline: none;
+    font-size: 1.8rem;
+    background-color: $mainColor1;
+    padding: 1.3rem 6rem;
+    color: white;
+    transition: all .3s;
+    float: right;                  
+
+    &:hover {
+        background-color: rgba($mainColor1, .9);
+        color: white;
+    }
+}
+
+.form-control {   
+    border: none;
+    outline: none !important;
+    border-radius: 0 !important;
+    border-bottom: solid 4px $graydark; 
+    background-color: $graylight;     
+    height: 6rem;    
+    transition: .2s;
+    font-size: 1.6rem;     
+    padding: .5rem 2rem  !important;          
+    
+    &::placeholder {  
+        font-size: 1.45rem;
+    }
+    &:focus {
+        border-bottom: solid 4px $mainColor2;
+    }
+}
+
+/* Thank you page */
+.thank__you {
+    padding-top: 8rem;
+    padding-bottom: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;   
+
+    h1 {
+        font-size: 3rem;
+        text-align: center;
+    }
+
+    h4 {
+        margin-top: 3rem;    
+        display: block;   
+        text-align: center;
+        background-color: $mainColor2;
+        padding: 2rem;
+        width: 10rem;     
+        border-radius: 100%;
+        color: $white;  
+        font-size: 3rem;        
+        animation: score 1.5s infinite ease-out;
+    }
+
+    p {
+        font-size: 1.6rem;
+        margin-top: 1.5rem;      
+    }
+}
+
+/* Annimations */
+@keyframes score {              
+    0% {
+        transform: scale(1.1)
+    }
+    50% {
+        transform: scale(1.5)
+    }
+    100% {
+        transform: scale(1)
+    }
+}

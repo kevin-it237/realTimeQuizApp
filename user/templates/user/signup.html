@@ -1,14 +1,22 @@
 {% extends "base.html" %}
 {% load bootstrap4 %}
+{% load staticfiles %}
 
 {% block content %}
-<div class="container">
-    <h1>Sign Up</h1>
+
+<div class="banner">
+    <h1>OpenTechnology Quiz</h1>
+    <img src="{% static '/imgs/brain-the-neurofeedback-icon.png' %}" />
+</div>
+
+<div class="container form__container">
+    <h2>Inscrivez vous pour commencer le Quiz</h2>
 
     <form method="POST">
         {% csrf_token %}
         {% bootstrap_form form %}
-        <input type="submit" name="" value="Sign Up" class="btn btn-primary">
+        <input type="submit" name="" value="S'inscrire" class="btn">
     </form>
 </div>
+
 {% endblock %}
