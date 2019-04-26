@@ -12,8 +12,10 @@ from . import forms
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.db.models import Sum, Count
 
 from .verify_result import calcul_result
+from .get_results import get_results
 
 User = get_user_model()
 
@@ -76,19 +78,21 @@ def index(request):
             responses = models.Response.objects.filter(question__pk=random_question_id)
         elif (num_already_anwsered == N ): # Il a terminé le jeux
             # Calculer son score
-            """ models.UserQuestion.objects.filter(attribute__in=attributes) \
-            .values('location') \
-            .annotate(score = Sum('score')) \
-            .order_by('-score') """
-            return render(request, 'quiz/thankyou.html')
+            score = models.UserQuestion.objects.filter(user=request.user).aggregate(Sum('point_obtenu'))
+            ctx = {'total': score}
+            return render(request, 'quiz/thankyou.html', context=ctx)
 
         # Display
-        ctx = {'question': question, 'responses': responses}
-        #print(str(questions.query))
+        ctx = {'question': question, 'responses': responses, 'n': num_already_anwsered + 1}
+        #print(str(questions.query))  
     return render(request, 'quiz/quiz.html', context = ctx)
 
 
-""" class QuestionList(SelectRelatedMixin, generic.ListView):
-    model = models.Response
-    select_related = ['question'] """
+def dashboard(request):
+    # Recuperer les resultats
+    scores = models.UserQuestion.objects.all().values('user').distinct().annotate(score = Sum('point_obtenu'), n = Count('user') * 10, questions = Count('user') * 10).order_by('-score')
+    final_results = get_results(scores)
+    ctx = {'scores': final_results, 'number_of_questions': N }
+    #return HttpResponse(final_results)
+    return render(request, 'quiz/dashboard.html', context = ctx)
 

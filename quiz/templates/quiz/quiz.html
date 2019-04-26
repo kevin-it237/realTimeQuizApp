@@ -1,29 +1,29 @@
 {% extends "base.html" %}
 {% load bootstrap4 %}
+{% load staticfiles %}
 
 {% block content %}
-<div class="container">
-    <h2>{{question.libelle}}</h2>
+
+<div class="banner" id="quiz__banner">
+
+</div>
+
+<div class="container questions_container">
     <form method="POST" id="responseForm">
+        <h2>{{n}}. {{question.libelle}}</h2>
         {% csrf_token %}
-        {% for response in responses %}
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="rep" value="{{response.libelle}}" id="defaultCheck{{response.id}}">
-                <label class="form-check-label" for="defaultCheck{{response.id}}">
-                    {{response.libelle}}
-                </label>
-            </div>
-            <input type="hidden" id="questionId" value="{{question.id}}" />
-        {% endfor %}
-        <button type="submit" id="submit" class="btn btn-primary">Valider</button>
-    </form>
-
-    <div class="col-md-8">
-
-    </div>
-
-    <form method="POST">
-        {% csrf_token %}
+        <ul class="unstyled">
+            {% for response in responses %}
+                <li>
+                    <input class="styled-checkbox" id="styled-checkbox-{{response.id}}" type="checkbox" name="rep" value="{{response.libelle}}" >
+                    <label for="styled-checkbox-{{response.id}}">{{response.libelle}}</label>
+                </li>
+                <input type="hidden" id="questionId" value="{{question.id}}" />
+            {% endfor %}
+        </ul>
+        <button type="submit" id="submit" class="btn">Valider</button>
     </form>
 </div>
+
 {% endblock %} 
+

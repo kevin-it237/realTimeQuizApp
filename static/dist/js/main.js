@@ -41,10 +41,38 @@ $("#responseForm").submit(function(e) {
 })
 
 renderLoader = () => {
-    let loader = '<i class="fas fa-spinner fa-spin" style="font-size:36px"></i>';
+    let loader = '<i class="fas fa-spinner fa-3x fa-spin"></i>';
     submitBtn.innerHTML = loader;
 }
 
 clearLoader = () => {
     submitBtn.innerHTML = "<span>Valider</span>";
 }
+
+
+// This function get the results in the database
+const resultBloc = document.querySelector(".dashboard_container");
+getRealTimeResults = () => {
+    axios({
+        method: "POST",
+        url: "/dashboard/",
+        headers: {
+            "content-type": "application/json"
+        }
+    })
+    .then(function(response) {
+        alert(response)
+        window.location.href = "/";
+        resultBloc.insertAdjacentElement('beforeend', "<h1>jojo</h1>")
+    })
+    .catch(function(error) {
+        alert(error);
+    });
+}
+
+getRealTimeResults();
+
+// Get new datas after a few seconds
+setInterval(() => {
+    getRealTimeResults();
+}, 1000)

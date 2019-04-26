@@ -27,7 +27,7 @@
                 <div class="logo__box">
                     {% if user.is_authenticated %}
                     <a href="{% url 'quiz:home' %}">
-                        <img class="logo" src="{% static 'imgs/open_logo_alone.SVG' %}" />
+                        <img class="logo" src="{% static 'imgs/open_logo_alone.svg' %}" />
                     </a>
                     {% else %}
                     <a href="{% url 'user:login' %}">
@@ -38,6 +38,9 @@
                 <div class="sign__box">
                     <ul class="navbar__items">
                         {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'quiz:home' %}">@ {{user.username}}</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'user:logout' %}">Logout</a>
                         </li>

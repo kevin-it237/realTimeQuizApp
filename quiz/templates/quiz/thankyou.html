@@ -10,10 +10,12 @@
 </div>
 
 <div class="container">
-   <div class="thank__you">
-        <h1>You have well completed the Quiz.</h1>
+   <div class="thank__you"> 
+        <h1>You have well completed the Quiz.</h1> 
         <p>Your score:</p>
-        <h4>86</h4>
+        <h4>
+            {% for key,value in total.items %}<span>{{ value }}</span>{% endfor %}
+        </h4>
    </div>
 </div>
 {% endblock %}

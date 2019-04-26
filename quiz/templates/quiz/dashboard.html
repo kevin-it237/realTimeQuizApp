@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="banner" id="dashboard__banner">
+    <h1>RESULTATS</h1>
+</div>
+
+<div class="container dashboard">
+    <div class="dashboard_container">
+        <div class="result result__header">
+            <div class="rang"><span>Rang</span></div>
+            <div class="name"><span>Nom</span></div>
+            <div class="email"><span>Adresse Email</span></div>
+            <div class="marks"><span>Score</span></div>
+            <div class="progression"><span>Progression</span></div>
+        </div>
+
+        {% for el in scores %}
+            <div class="result">
+                <div class="rang">
+                    {% if el.n == 1 %}
+                        <img class="medail" src="{% static '/imgs/1.png' %}" alt="Or">
+                    {% endif %}
+                    {% if el.n == 2 %}
+                        <img class="medail" src="{% static '/imgs/2.png' %}" alt="Argent">
+                    {% endif %}
+                    {% if el.n == 3 %}
+                        <img class="medail" src="{% static '/imgs/3.png' %}" alt="Bronze">
+                    {% endif %}
+                    {% if el.n > 3 %}
+                        <span>{{ el.n }}</span>
+                    {% endif %}
+                </div>
+                <div class="name"><span>{{el.name}}</span></div>
+                <div class="email"><span>{{el.email}}</span></div>
+                <div class="marks"><span>{{el.score}}</span></div>
+                <div class="progression">
+                    <div class="progress">
+                        <div class="progress-bar bg-dark" style="width:{{el.questions}}%"></div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
