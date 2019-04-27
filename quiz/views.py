@@ -26,7 +26,11 @@ N = 5 # Number of question to answer
 
 @login_required(login_url='/account/login/')
 def index(request):
-    # Verify is quiz is not stop by the admin
+    # Redirection of the admin
+    if request.user.username == 'inchtechs':
+        return redirect('quiz:dashboard')
+
+    # Verify if quiz is not stop by the admin
     is_stopped = models.QuizControl.objects.get(pk=1)
     if is_stopped.is_stopped: # If quiz is stopped
         n = models.UserQuestion.objects.all().count()

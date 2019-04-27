@@ -161,7 +161,7 @@ footer {
   align-items: center;
   justify-content: center; }
   .questions_container form {
-    width: 80%;
+    width: 70%;
     display: flex;
     flex-direction: column;
     padding: 6rem 5rem;
@@ -174,7 +174,7 @@ footer {
     .questions_container form li {
       margin-top: 1.5rem; }
       .questions_container form li label {
-        font-size: 1.8rem; }
+        font-size: 1.7rem; }
     .questions_container form .btn {
       flex: 0;
       margin-top: 4.5rem; }
