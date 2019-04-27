@@ -112,21 +112,21 @@ header {
   align-items: center;
 
   h2 {
-    font-size: 3.5rem;
+    font-size: 2.5rem;  
     font-weight: bold;
     text-align: center;
   }
 
   form {
-    width: 80%;
-    margin-top: 4rem;
+    width: 60%;
+    margin-top: 4rem;  
     padding: 5rem;
     background-color: $white;
     box-shadow: 0px 5px 10px rgba($graydark, 0.2);
     animation: form 1.5s ease-in-out;
 
     @media only screen and (max-width: 900px) {
-      width: 100%;
+      width: 80%;
     }
 
     .form-group {
@@ -168,7 +168,8 @@ footer {
 /* Inputs and button style */
 .btn {
   margin-top: 2rem;
-  outline: none;
+  outline: none !important;
+  outline-color: $white;
   font-size: 1.8rem;
   background-color: $mainColor1;
   padding: 1.3rem 6rem;
@@ -186,17 +187,17 @@ footer {
 
   &:active {
       color: white;
-      outline: none;  
+      outline: none !important;
   }
 }
 
-.form-control {
+.form-control {   
   border: none;
-  outline: none !important;
+  outline: 0 !important;
   border-radius: 0 !important;
   border-bottom: solid 4px $graydark;
   background-color: $graylight;
-  height: 6rem;
+  height: 6rem;   
   transition: 0.2s;
   font-size: 1.6rem;
   padding: 0.5rem 2rem !important;
@@ -206,10 +207,10 @@ footer {
   }
   &:focus {
     border-bottom: solid 4px $mainColor2;
-    outline: none;
+    outline: none !important;
   }
 }
-
+ 
 /* Question container */
 
 .questions_container {
