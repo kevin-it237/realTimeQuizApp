@@ -33,9 +33,9 @@ getRealTimeResults = () => {
 getRealTimeResults();
 
 // Get new datas after a few seconds
-/* setInterval(function() {
+setInterval(function() {
   getRealTimeResults();
-}, 2000); */
+}, 2000);
 
 // Get and format data from API
 renderResults = data => {
