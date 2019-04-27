@@ -7,3 +7,4 @@ from quiz import models
 admin.site.register(models.Question)
 admin.site.register(models.Response)
 admin.site.register(models.UserQuestion)
+admin.site.register(models.QuizControl)

@@ -36,3 +36,9 @@ class Response(models.Model):
 
     def __str__(self):
         return self.libelle
+
+class QuizControl(models.Model):
+    is_stopped = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.is_stopped)

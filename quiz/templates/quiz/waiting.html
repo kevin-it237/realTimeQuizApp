@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="banner" id="waiting__banner">
+    <h1>Le quiz commencera dans quelque instants.</h1>
+    <p>Vous serez automatiquement redirigé vers le quiz après son lancement.</p>
+    <img src="{% static '/imgs/brain-the-neurofeedback-icon.png' %}" />
+</div>
+
+<div class="quiz-icon-bloc"> 
+    <h3>Règles qu quiz:</h3>
+    <h4>Reponse Juste: +5</h4>
+    <h4>Reponse Fausse: -2</h4>
+    <h4>100 Points possibles</h4>
+</div>
+
+{% endblock %}
+
+{% block scriptbloc %}
+    <script src="{% static 'dist/js/waiting.js' %}"></script>
+{% endblock %}

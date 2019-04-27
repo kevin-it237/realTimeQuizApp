@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load bootstrap4 %}
 {% load staticfiles %}
 
 {% block content %}
@@ -44,6 +43,15 @@
                 </div>
             </div>
         {% endfor %}
+    </div>
+    
+    <div class="controls">
+        {% if is_stopped == True %}
+            <button id="start">Start Quiz</button>
+        {% endif %}
+        {% if is_stopped == False %}
+            <button id="stop">Stop Quiz</button>
+        {% endif %}
     </div>
 </div>
 

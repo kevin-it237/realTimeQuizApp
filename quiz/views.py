@@ -2,6 +2,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
+from django.core import serializers
 
 from random import randint
 import json
@@ -19,16 +20,29 @@ from .get_results import get_results
 
 User = get_user_model()
 
-N = 5
+N = 5 # Number of question to answer
 
 # Create your views here.
 
 @login_required(login_url='/account/login/')
 def index(request):
+    # Verify is quiz is not stop by the admin
+    is_stopped = models.QuizControl.objects.get(pk=1)
+    if is_stopped.is_stopped: # If quiz is stopped
+        n = models.UserQuestion.objects.all().count()
+        # If nobody have'nt already answerd
+        if n == 0: 
+            return render(request, 'quiz/waiting.html')
+        else: # The admin have stopped the quiz, redirect to thank you page
+            score = models.UserQuestion.objects.filter(user=request.user).aggregate(Sum('point_obtenu'))
+            ctx = {'total': score}
+            if score.get('point_obtenu__sum') == None:
+                ctx = {'total': {'score': 0 }}
+            return render(request, 'quiz/thankyou.html', context=ctx)
+
     # When user validate a question
     if request.method == 'POST':
         # Get the user input
-        json.loads(request.body.decode('utf-8'))
         user_response = json.loads(request.body.decode('utf-8'))
         # Get the user responses in string form
         questionId = user_response['questionId']
@@ -90,9 +104,36 @@ def index(request):
 
 def dashboard(request):
     final_results = get_results()
-    if request.method == 'POST':
-        return JsonResponse({'data': final_results})
+    if request.user.username == 'inchtechs':
+        is_stopped = models.QuizControl.objects.get(pk=1) # Find if quiz is already stopped
+        if request.method == 'POST':
+            return JsonResponse({'data': final_results, 'is_stopped': is_stopped.is_stopped})
+        else:
+            ctx = {'scores': final_results, 'number_of_questions': N, 'is_stopped': is_stopped.is_stopped}
+            return render(request, 'quiz/dashboard.html', context = ctx)
     else:
-        ctx = {'scores': final_results, 'number_of_questions': N }
-        return render(request, 'quiz/dashboard.html', context = ctx)
+        return redirect('quiz:home')   
 
+# Stop the quiz
+def stop_quiz(request):
+    if request.method == 'POST':
+        # Load Post data from API
+        changed = json.loads(request.body.decode('utf-8'))
+        # Get the user responses in string form
+        new_value = changed['haveStopped']
+        # Update the continued field in db
+        models.QuizControl.objects.filter(pk=1).update(is_stopped = new_value)
+        print(new_value)
+        return HttpResponse(new_value)
+    else:
+        return HttpResponse(0)
+
+# Check when redirect
+def check_when_redirect(request):
+    print(request.method)
+    if request.method == 'POST':
+        # get the status to the db
+        is_stopped = models.QuizControl.objects.get(pk=1) # Find if quiz is already stopped
+        return HttpResponse(is_stopped.is_stopped)
+    else:
+        return redirect('quiz:home')

@@ -4,15 +4,26 @@ axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 // This function get the results in the database
 const resultBloc = document.querySelector(".dashboard_container");
 getRealTimeResults = () => {
-  axios({
-    method: "POST",
-    url: "/dashboard/",
-    headers: {
-      "content-type": "application/json"
-    }
-  })
+    axios({
+        method: "POST",
+        url: "/dashboard/",
+        headers: {
+        "content-type": "application/json"
+        }
+    })
     .then(function(response) {
         $(".dashboard_container").html(renderResults(response.data.data));
+        if (response.data.is_stopped) {
+            const html = `<button id="start">Start Quiz</button>`;
+            $(".controls").html(html);
+            // have event listener to button start button
+            addListenerToStartBtn();
+        } else {
+            const html = `<button id="stop">Stop Quiz</button>`;
+            $(".controls").html(html);
+            // have event listener to button start button
+            addListenerToStopBtn();
+        }
     })
     .catch(function(error) {
       alert(error);
@@ -22,9 +33,9 @@ getRealTimeResults = () => {
 getRealTimeResults();
 
 // Get new datas after a few seconds
-setInterval(function() {
+/* setInterval(function() {
   getRealTimeResults();
-}, 2000);
+}, 2000); */
 
 // Get and format data from API
 renderResults = data => {
@@ -67,3 +78,41 @@ renderResults = data => {
   });
   return html;
 };
+
+stopOrStartQuiz = (value) => {
+    axios({
+      method: "POST",
+      url: "/stop_quiz/",
+      data: {
+        haveStopped: value
+      },
+      headers: {
+        "content-type": "application/json"
+      }
+    })
+      .then(function(response) {
+        getRealTimeResults();
+      })
+      .catch(function(error) {
+        alert(error);
+      });
+};
+
+addListenerToStopBtn = () => {
+    const stopBtn = document.querySelector("#stop");
+    stopBtn.addEventListener("click",function() {
+        let loader = '<i class="fas fa-spinner fa-1x fa-spin"></i>';
+        stopBtn.innerHTML = loader;
+        stopOrStartQuiz(true);
+    });
+}
+
+
+addListenerToStartBtn = () => {
+    const startBtn = document.querySelector("#start");
+    startBtn.addEventListener("click", function() {
+        let loader = '<i class="fas fa-spinner fa-1x fa-spin"></i>';
+        startBtn.innerHTML = loader;
+        stopOrStartQuiz(false);
+    });
+}

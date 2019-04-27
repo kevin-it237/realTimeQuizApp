@@ -58,7 +58,12 @@ header {
   .banner h1 {
     font-size: 4.2rem;
     font-weight: bold;
+    text-align: center !important;
+    padding: 2rem;
     color: #fff; }
+    @media only screen and (max-width: 800px) {
+      .banner h1 {
+        font-size: 2.5rem; } }
   .banner img {
     margin-top: 2rem;
     width: 9rem; }
@@ -291,6 +296,67 @@ footer {
         font-weight: bold !important; }
     .dashboard_container .result .progression {
       width: 15%; }
+
+#waiting__banner {
+  height: 40rem !important; }
+  #waiting__banner h1 {
+    text-align: center !important;
+    padding: 2rem; }
+    @media only screen and (max-width: 800px) {
+      #waiting__banner h1 {
+        font-size: 2.5rem; } }
+  #waiting__banner p {
+    text-align: center;
+    color: white;
+    padding: 2rem;
+    font-size: 1.6rem; }
+
+.quiz-icon-bloc {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 25vh; }
+  .quiz-icon-bloc h3 {
+    font-size: 2.5rem;
+    font-weight: bold; }
+  .quiz-icon-bloc h4 {
+    font-size: 2rem;
+    margin-top: 1.5rem; }
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  right: 10px;
+  top: 100px; }
+  .controls #start {
+    margin-right: 1rem; }
+  .controls #start, .controls #stop {
+    outline: none !important;
+    border: none;
+    font-size: 1.6rem;
+    background-color: rgba(237, 28, 36, 0.9);
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    color: white;
+    transition: all 0.3s;
+    float: right;
+    box-shadow: 0px 5px 5px rgba(34, 34, 34, 0.1);
+    cursor: pointer;
+    width: 15rem; }
+    .controls #start:hover, .controls #stop:hover {
+      background-color: rgba(237, 28, 36, 0.8);
+      color: white;
+      box-shadow: 0px 5px 5px rgba(34, 34, 34, 0.2);
+      transform: scale(1.03) translateY(-0.4rem); }
+    .controls #start:active, .controls #stop:active {
+      color: white;
+      outline: none !important; }
+    .controls #start span, .controls #stop span {
+      color: #fff; }
 
 /* Annimations */
 @keyframes score {
