@@ -12,7 +12,7 @@ from . import forms
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.db.models import Sum, Count
+from django.db.models import Sum
 
 from .verify_result import calcul_result
 from .get_results import get_results
@@ -89,10 +89,10 @@ def index(request):
 
 
 def dashboard(request):
-    # Recuperer les resultats
-    scores = models.UserQuestion.objects.all().values('user').distinct().annotate(score = Sum('point_obtenu'), n = Count('user') * 10, questions = Count('user') * 10).order_by('-score')
-    final_results = get_results(scores)
-    ctx = {'scores': final_results, 'number_of_questions': N }
-    #return HttpResponse(final_results)
-    return render(request, 'quiz/dashboard.html', context = ctx)
+    final_results = get_results()
+    if request.method == 'POST':
+        return JsonResponse({'data': final_results})
+    else:
+        ctx = {'scores': final_results, 'number_of_questions': N }
+        return render(request, 'quiz/dashboard.html', context = ctx)
 
