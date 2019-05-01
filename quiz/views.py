@@ -93,7 +93,7 @@ def index(request):
                 random_question_id = randint(7, 26)
 
             # Get this question
-            question = models.Question.objects.get(pk=str(random_question_id))
+            question = models.Question.objects.get(pk=random_question_id)
             print(str(question))
             # Get correspondant responses
             responses = models.Response.objects.filter(question__pk=random_question_id)
