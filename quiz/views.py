@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.core import serializers
 
-from random import randint
+from random import randint, choice
 import json
 from django.http import JsonResponse, HttpResponse
 
@@ -83,14 +83,14 @@ def index(request):
         # Find if he have not anwserd all his questions
         if (num_already_anwsered < N ):
             # Find a random question
-            random_question_id = randint(7, 26)
+            random_question_id = choice(ids)
             print(random_question_id)
 
             # If the question is allready answered
             while random_question_id in already_anwsered_ids:
                 print(random_question_id)
                 # Generate a new random
-                random_question_id = randint(7, 26)
+                random_question_id = choice(ids)
 
             # Get this question
             question = models.Question.objects.get(pk=random_question_id)
