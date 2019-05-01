@@ -16,7 +16,7 @@ redirectToQuiz = () => {
         }
       })
       .catch(function(error) {
-        alert(error);
+
       });
 };
 

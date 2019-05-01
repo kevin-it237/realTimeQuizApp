@@ -28,7 +28,6 @@ sendResponse = () => {
     })
     .catch(function(error) {
       clearLoader();
-      alert(error);
     });
 };
 

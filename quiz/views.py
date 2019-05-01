@@ -20,7 +20,7 @@ from .get_results import get_results
 
 User = get_user_model()
 
-N = 5 # Number of question to answer
+N = 20 # Number of question to answer
 
 # Create your views here.
 
@@ -83,15 +83,18 @@ def index(request):
         # Find if he have not anwserd all his questions
         if (num_already_anwsered < N ):
             # Find a random question
-            random_question_id = randint(1, NUM_QUESTIONS)
+            random_question_id = randint(7, 26)
+            print(random_question_id)
+
             # If the question is allready answered
             while random_question_id in already_anwsered_ids:
                 print(random_question_id)
                 # Generate a new random
-                random_question_id = randint(1, NUM_QUESTIONS)
+                random_question_id = randint(7, 26)
 
             # Get this question
-            question = models.Question.objects.get(pk=random_question_id)
+            question = models.Question.objects.get(pk=str(random_question_id))
+            print(str(question))
             # Get correspondant responses
             responses = models.Response.objects.filter(question__pk=random_question_id)
         elif (num_already_anwsered == N ): # Il a terminé le jeux

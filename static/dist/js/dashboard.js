@@ -26,7 +26,6 @@ getRealTimeResults = () => {
         }
     })
     .catch(function(error) {
-      alert(error);
     });
 };
 
@@ -35,7 +34,7 @@ getRealTimeResults();
 // Get new datas after a few seconds
 setInterval(function() {
   getRealTimeResults();
-}, 2000);
+}, 4000);
 
 // Get and format data from API
 renderResults = data => {
@@ -94,7 +93,6 @@ stopOrStartQuiz = (value) => {
         getRealTimeResults();
       })
       .catch(function(error) {
-        alert(error);
       });
 };
 
