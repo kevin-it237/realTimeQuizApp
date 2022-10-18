@@ -365,24 +365,20 @@ footer {
 
 /* Annimations */
 @keyframes score {
-  0% {
+  from {
     transform: scale(1.1); }
-  50% {
-    transform: scale(1.5); }
-  100% {
+  to {
     transform: scale(1); } }
 
 /* Annimations */
 @keyframes form {
-  0% {
-    transform: translateX(-100%); }
-  50% {
-    transform: translateX(10%); }
-  100% {
+  from {
+    transform: translateX(-10px); }
+  to {
     transform: translateX(0); } }
 
 @keyframes question {
-  0% {
-    transform: translateX(-100%); }
-  100% {
+  from {
+    transform: translateX(-15px); }
+  to {
     transform: translateX(0); } }
