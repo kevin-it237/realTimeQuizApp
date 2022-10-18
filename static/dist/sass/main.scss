@@ -518,35 +518,29 @@ footer {
 
 /* Annimations */
 @keyframes score {
-  0% {
+  from {
     transform: scale(1.1);
   }
-  50% {
-    transform: scale(1.5);
-  }
-  100% {
+  to{
     transform: scale(1);
   }
 }
 
 /* Annimations */
 @keyframes form {
-  0% {
-    transform: translateX(-100%);
+  from {
+    transform: translateX(10px);
   }
-  50% {
-    transform: translateX(10%);
-  }
-  100% {
+  to {
     transform: translateX(0);
   }
 }
 
 @keyframes question {
-  0% {
-    transform: translateX(-100%);
+  from {
+    transform: translateX(10px);
   }
-  100% {
+  to {
     transform: translateX(0);
   }
 }
