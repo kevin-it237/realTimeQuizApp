@@ -81,22 +81,24 @@ WSGI_APPLICATION = 'opentechquiz.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-"""
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ot_quiz',
-        'USER': 'root',
-        'PASSWORD': '',
+        'NAME': 'bhinndfw3zqjtdedpzaj',
+        'USER': 'usknopcfbabkqzid',
+        'PASSWORD': 'FwMdJy5i6QUUxUG7rEPM',
+        "HOST": "bhinndfw3zqjtdedpzaj-mysql.services.clever-cloud.com",
+        "PORT": "3306",
     }
 }
-"""
+
 
 
 # Password validation
