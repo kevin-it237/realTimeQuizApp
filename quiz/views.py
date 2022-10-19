@@ -37,14 +37,14 @@ def index(request):
         # If nobody have'nt already answerd
         if n == 0: 
             return render(request, 'quiz/waiting.html')
-        else: # The admin have stopped the quiz, redirect to thank you page
+        else: # The admin has stopped the quiz, redirect to thank you page
             score = models.UserQuestion.objects.filter(user=request.user).aggregate(Sum('point_obtenu'))
             ctx = {'total': score}
             if score.get('point_obtenu__sum') == None:
                 ctx = {'total': {'score': 0 }}
             return render(request, 'quiz/thankyou.html', context=ctx)
 
-    # When user validate a question
+    # When user validates a question
     if request.method == 'POST':
         # Get the user input
         user_response = json.loads(request.body.decode('utf-8'))
@@ -74,30 +74,29 @@ def index(request):
         # Number of already anwsered
         num_already_anwsered = already_anwsered.count()
 
+        if(NUM_QUESTIONS == 0):
+            return HttpResponse("Le quiz n'est pas encore lancé!")
+
         # Ids of All questions
         ids = [question.id for question in questions]
         # Ids of Already anwsered
         already_anwsered_ids = [question.question_id for question in already_anwsered]
-        print(already_anwsered_ids)
 
         # Find if he have not anwserd all his questions
-        if (num_already_anwsered < N ):
+        if (num_already_anwsered < NUM_QUESTIONS ):
             # Find a random question
             random_question_id = choice(ids)
-            print(random_question_id)
 
             # If the question is allready answered
             while random_question_id in already_anwsered_ids:
-                print(random_question_id)
                 # Generate a new random
                 random_question_id = choice(ids)
 
             # Get this question
             question = models.Question.objects.get(pk=random_question_id)
-            print(str(question))
             # Get correspondant responses
             responses = models.Response.objects.filter(question__pk=random_question_id)
-        elif (num_already_anwsered == N ): # Il a terminé le jeux
+        elif (num_already_anwsered == NUM_QUESTIONS): # Il a terminé le jeux
             # Calculer son score
             score = models.UserQuestion.objects.filter(user=request.user).aggregate(Sum('point_obtenu'))
             ctx = {'total': score}
@@ -130,14 +129,12 @@ def stop_quiz(request):
         new_value = changed['haveStopped']
         # Update the continued field in db
         models.QuizControl.objects.filter(pk=1).update(is_stopped = new_value)
-        print(new_value)
         return HttpResponse(new_value)
     else:
         return HttpResponse(0)
 
 # Check when redirect
 def check_when_redirect(request):
-    print(request.method)
     if request.method == 'POST':
         # get the status to the db
         is_stopped = models.QuizControl.objects.get(pk=1) # Find if quiz is already stopped
