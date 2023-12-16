@@ -28,9 +28,9 @@ LOGOUT_REDIRECT_URL = 'user:login'
 SECRET_KEY = 'rz=#9j8j+3d=vykfib-&g(qm0i(q0^rwq+s$og0iap=1gn$cjq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["quizz.inchtechs.com", "quiz.inchtechs.com", "www.quiz.inchtechs.com", "challenge.inchtechs.com", "www.challenge.inchtechs.com", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["quiz.inchtechs.com", "www.quiz.inchtechs.com", "localhost", "127.0.0.1"]
 
 
 # Application definition
