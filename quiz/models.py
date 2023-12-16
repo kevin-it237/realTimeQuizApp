@@ -31,8 +31,8 @@ class UserQuestion(models.Model):
 
 
 class Response(models.Model):
-    libelle = models.CharField(max_length=255)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    libelle = models.CharField(max_length=255)
 
     def __str__(self):
         return self.libelle

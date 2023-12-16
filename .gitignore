@@ -1,3 +1,6 @@
 node_modules
 env
 Archive.zip
+venv
+__pycache__
+opentechquiz/__pycache__

@@ -20,8 +20,6 @@ from .get_results import get_results
 
 User = get_user_model()
 
-N = 20 # Number of question to answer
-
 # Create your views here.
 
 @login_required(login_url='/account/login/')
@@ -68,13 +66,13 @@ def index(request):
         # Get all questions
         questions = models.Question.objects.all()
         # Get the total number of question in the db
-        NUM_QUESTIONS = questions.count()
+        TOTAL_QUESTIONS = questions.count()
         # Find questions already anwsered
         already_anwsered = models.UserQuestion.objects.filter(user=request.user)
         # Number of already anwsered
         num_already_anwsered = already_anwsered.count()
 
-        if(NUM_QUESTIONS == 0):
+        if(TOTAL_QUESTIONS == 0):
             return HttpResponse("Le quiz n'est pas encore lancé!")
 
         # Ids of All questions
@@ -83,7 +81,7 @@ def index(request):
         already_anwsered_ids = [question.question_id for question in already_anwsered]
 
         # Find if he have not anwserd all his questions
-        if (num_already_anwsered < NUM_QUESTIONS ):
+        if (num_already_anwsered < TOTAL_QUESTIONS ):
             # Find a random question
             random_question_id = choice(ids)
 
@@ -96,7 +94,7 @@ def index(request):
             question = models.Question.objects.get(pk=random_question_id)
             # Get correspondant responses
             responses = models.Response.objects.filter(question__pk=random_question_id)
-        elif (num_already_anwsered == NUM_QUESTIONS): # Il a terminé le jeux
+        elif (num_already_anwsered == TOTAL_QUESTIONS): # Il a terminé le jeux
             # Calculer son score
             score = models.UserQuestion.objects.filter(user=request.user).aggregate(Sum('point_obtenu'))
             ctx = {'total': score}
@@ -115,7 +113,9 @@ def dashboard(request):
         if request.method == 'POST':
             return JsonResponse({'data': final_results, 'is_stopped': is_stopped.is_stopped})
         else:
-            ctx = {'scores': final_results, 'number_of_questions': N, 'is_stopped': is_stopped.is_stopped}
+            # Get the total number of question in the db
+            TOTAL_QUESTIONS = models.Question.objects.all().count()
+            ctx = {'scores': final_results, 'number_of_questions': TOTAL_QUESTIONS, 'is_stopped': is_stopped.is_stopped}
             return render(request, 'quiz/dashboard.html', context = ctx)
     else:
         return redirect('quiz:home')   

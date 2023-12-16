@@ -37,7 +37,7 @@ header {
       margin: 0;
       padding: 0; }
       header nav .sign__box .navbar__items .nav-item a {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
         color: #fff;
         transition: 2ms; }
         header nav .sign__box .navbar__items .nav-item a:hover {
@@ -56,14 +56,14 @@ header {
   background-repeat: no-repeat;
   background-size: cover; }
   .banner h1 {
-    font-size: 4.2rem;
+    font-size: 3.2rem;
     font-weight: bold;
     text-align: center !important;
     padding: 2rem;
     color: #fff; }
     @media only screen and (max-width: 800px) {
       .banner h1 {
-        font-size: 2.5rem; } }
+        font-size: 2rem; } }
   .banner img {
     margin-top: 2rem;
     width: 9rem; }
@@ -79,7 +79,7 @@ header {
   justify-content: center;
   align-items: center; }
   .form__container h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: bold;
     text-align: center; }
   .form__container form {
@@ -95,15 +95,15 @@ header {
     .form__container form .form-group {
       margin-top: 2.5rem; }
       .form__container form .form-group label {
-        font-size: 1.6rem; }
+        font-size: 1.5rem; }
       .form__container form .form-group small,
       .form__container form .form-group small > * {
-        font-size: 1.3rem; }
+        font-size: 1.2rem; }
       .form__container form .form-group small ul {
         margin-left: 1.8rem; }
     .form__container form .alert,
     .form__container form .alert > * {
-      font-size: 1.45rem; }
+      font-size: 1.3rem; }
 
 /* Footer */
 footer {
@@ -112,7 +112,7 @@ footer {
   background-color: #222222; }
   footer p {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: white; }
 
 /* Inputs and button style */
@@ -120,7 +120,7 @@ footer {
   margin-top: 2rem;
   outline: none !important;
   outline-color: #fff;
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   background-color: #ed1c24;
   padding: 1.3rem 6rem;
   color: white;
@@ -144,10 +144,10 @@ footer {
   background-color: #f6f6f6;
   height: 6rem;
   transition: 0.2s;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   padding: 0.5rem 2rem !important; }
   .form-control::placeholder {
-    font-size: 1.45rem; }
+    font-size: 1.3rem; }
   .form-control:focus {
     border-bottom: solid 4px #fbb03b;
     outline: none !important; }
@@ -174,14 +174,14 @@ footer {
     .questions_container form li {
       margin-top: 1.5rem; }
       .questions_container form li label {
-        font-size: 1.7rem; }
+        font-size: 1.5rem; }
     .questions_container form .btn {
       flex: 0;
       margin-top: 4.5rem; }
       .questions_container form .btn .fa-spinner {
-        font-size: 1.6rem; }
+        font-size: 1.5rem; }
     .questions_container form h2 {
-      font-size: 2.5rem;
+      font-size: 2rem;
       margin-bottom: 2rem;
       font-weight: bold; }
 
@@ -194,7 +194,7 @@ footer {
   align-items: center;
   justify-content: center; }
   .thank__you h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     text-align: center; }
   .thank__you h4 {
     margin-top: 3rem;
@@ -205,10 +205,10 @@ footer {
     width: 10rem;
     border-radius: 100%;
     color: #fff;
-    font-size: 3rem;
+    font-size: 2rem;
     animation: score .4s infinite ease-out; }
   .thank__you p {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     margin-top: 1.5rem; }
 
 .styled-checkbox {
@@ -281,7 +281,7 @@ footer {
     .dashboard_container .result:not(:first-child) {
       border-top: 1px solid rgba(34, 34, 34, 0.1); }
     .dashboard_container .result span {
-      font-size: 1.6rem; }
+      font-size: 1.5rem; }
       @media only screen and (max-width: 600px) {
         .dashboard_container .result span {
           font-size: 1.4rem; } }
@@ -309,12 +309,12 @@ footer {
     padding: 2rem; }
     @media only screen and (max-width: 800px) {
       #waiting__banner h1 {
-        font-size: 2.5rem; } }
+        font-size: 2rem; } }
   #waiting__banner p {
     text-align: center;
     color: white;
     padding: 2rem;
-    font-size: 1.6rem; }
+    font-size: 1.5rem; }
 
 .quiz-icon-bloc {
   margin-top: 4rem;
@@ -324,10 +324,10 @@ footer {
   align-items: center;
   height: 25vh; }
   .quiz-icon-bloc h3 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: bold; }
   .quiz-icon-bloc h4 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin-top: 1.5rem; }
 
 .controls {
@@ -342,7 +342,7 @@ footer {
   .controls #start, .controls #stop {
     outline: none !important;
     border: none;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     background-color: rgba(237, 28, 36, 0.9);
     padding: 1rem 2rem;
     border-radius: 10px;
